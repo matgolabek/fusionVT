@@ -1,0 +1,11 @@
+.DS_Store
+Makefile
+gen_objs
+gen_mocs
+*.o
+raspberrypi_video
+Images
+Imgs4
+Imgs5
+ImgsForReg
+.qmake.stash
