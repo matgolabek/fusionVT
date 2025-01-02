@@ -9,18 +9,12 @@ from torch.autograd import Variable
 import numpy as np
 from copy import deepcopy
 
-from PIL import Image
-
 from utils.parse_config import *
 from utils.utils import build_targets, is_parallel
 from collections import defaultdict
 
-import matplotlib.pyplot as plt
-import matplotlib.patches as patches
 
 import brevitas.nn as qnn
-from brevitas.nn import QuantUpsamplingBilinear2d as QuantUpsample
-from brevitas.nn import quant_bn, QuantIdentity
 
 from brevitas_examples.imagenet_classification.models.common import CommonIntActQuant, CommonUintActQuant
 from brevitas_examples.imagenet_classification.models.common import CommonIntWeightPerChannelQuant
@@ -28,49 +22,6 @@ from brevitas_examples.imagenet_classification.models.common import CommonIntWei
 from brevitas.export import export_onnx_qcdq
 import onnxruntime
 
-
-from brevitas.core.restrict_val import RestrictValueType
-from brevitas.quant import Int8ActPerTensorFloat
-from brevitas.quant import Int8WeightPerTensorFloat
-from brevitas.quant import Uint8ActPerTensorFloat
-from brevitas.quant import Int8Bias
-
-
-# class CommonIntWeightPerTensorQuant(Int8WeightPerTensorFloat):
-#     """
-#     Common per-tensor weight quantizer with bit-width set to None so that it's forced to be
-#     specified by each layer.
-#     """
-#     scaling_min_val = 2e-16
-#     bit_width = None
-
-
-# class CommonIntWeightPerChannelQuant(CommonIntWeightPerTensorQuant):
-#     """
-#     Common per-channel weight quantizer with bit-width set to None so that it's forced to be
-#     specified by each layer.
-#     """
-#     scaling_per_output_channel = True
-
-
-# class CommonIntActQuant(Int8ActPerTensorFloat):
-#     """
-#     Common signed act quantizer with bit-width set to None so that it's forced to be specified by
-#     each layer.
-#     """
-#     scaling_min_val = 2e-16
-#     bit_width = None
-#     restrict_scaling_type = RestrictValueType.LOG_FP
-
-
-# class CommonUintActQuant(Uint8ActPerTensorFloat):
-#     """
-#     Common unsigned act quantizer with bit-width set to None so that it's forced to be specified by
-#     each layer.
-#     """
-#     scaling_min_val = 2e-16
-#     bit_width = None
-#     restrict_scaling_type = RestrictValueType.LOG_FP
 
 def create_modules(module_defs):
     """
@@ -120,19 +71,9 @@ def create_modules(module_defs):
                     bias=not bn,
                     weight_quant=CommonIntWeightPerChannelQuant,
                     weight_bit_width=8
-                    #bias_quant=Int8Bias,
-                    #input_quant=Int8ActPerTensorFloat,
-                    #output_quant=Int8ActPerTensorFloat,
-                    #return_quant_tensor=rqt
                 ),
             )
             if bn:
-                # modules.add_module("quant_batch_norm_%d" % i, quant_bn.BatchNorm2dToQuantScaleBias(filters,
-                #     weight_quant=Int8WeightPerTensorFloat,
-                #     bias_quant=Int8Bias,
-                #     input_quant=Int8ActPerTensorFloat,
-                #     output_quant=Int8ActPerTensorFloat,
-                #     return_quant_tensor=True))
                 modules.add_module("batch_norm_%d" % i, nn.BatchNorm2d(filters))
 
             if module_def["activation"] == "quant_relu":
@@ -141,8 +82,6 @@ def create_modules(module_defs):
                                                                       #return_quant_tensor=rqt,
                                                                       scaling_per_channel = True
                                                                       ))
-            # else:
-            #     modules.add_module("quant_linear_%d" % i, QuantIdentity(return_quant_tensor=False))
 
         elif module_def["type"] == "maxpool":
             kernel_size = int(module_def["size"])
@@ -163,19 +102,16 @@ def create_modules(module_defs):
 
         elif module_def["type"] == "quant_upsample":
             upsample = nn.Upsample(scale_factor=int(module_def["stride"]), mode="nearest")
-            #upsample = QuantUpsample(scale_factor=int(module_def["stride"]),return_quant_tensor=False)
             modules.add_module("reg_upsample_%d" % i, upsample)
 
         elif module_def["type"] == "route":
             layers = [int(x) for x in module_def["layers"].split(",")]
             filters = sum([output_filters[layer_i] for layer_i in layers])
             modules.add_module("route_%d" % i, EmptyLayer())
-            # modules.add_module("route_%d" % i, QuantIdentity(return_quant_tensor=False))
 
         elif module_def["type"] == "shortcut":
             filters = output_filters[int(module_def["from"])]
             modules.add_module("shortcut_%d" % i, EmptyLayer())
-            # modules.add_module("shortcut_%d" % i, QuantIdentity(return_quant_tensor=False))
 
         elif module_def["type"] == "yolo":
             anchor_idxs = [int(x) for x in module_def["mask"].split(",")]
@@ -222,8 +158,6 @@ class YOLOLayer(nn.Module):
         print(anchors, num_classes, img_dim)
 
     def forward(self, x, targets=None):
-        # if isinstance(x, qnn.QuantTensor):
-        #     x = x.tensor
         nA = self.num_anchors
         nB = x.size(0)
         nG = x.size(2)
@@ -353,14 +287,6 @@ class Darknet(nn.Module):
         self.onnx_output_name = None
 
     def forward(self, x, targets=None):
-        # if self.onnx_session is not None:
-        #     if isinstance(x, torch.Tensor):
-        #         x = x.detach().cpu().numpy()  # Convert to NumPy array if input is a PyTorch tensor
-        #     outputs = self.onnx_session.run([self.onnx_output_name], {self.onnx_input_name: x})
-        #     return torch.tensor(outputs[0])  # Convert ONNX output back to PyTorch tensor
-
-        #x = self.quant_input(x)
-
         is_training = targets is not None
         output = []
         self.losses = defaultdict(float)
@@ -495,71 +421,71 @@ class Darknet(nn.Module):
         device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
         self.load_state_dict(torch.load(weights_path, weights_only=True, map_location=device))
 
-    def save_weights_dict(self, path, cutoff=-1):
+    def save_weights_dict(self, path):
         torch.save(self.state_dict(), path) 
 
-    def save_weights_pytorch(self, path, cutoff=-1):
+# Not used saving weights in thsese formats
+    # def save_weights_pytorch(self, path, cutoff=-1):
 
-        fp = open(path, "wb")
-        self.header_info[3] = self.seen
-        self.header_info.tofile(fp)
+    #     fp = open(path, "wb")
+    #     self.header_info[3] = self.seen
+    #     self.header_info.tofile(fp)
 
-        # Iterate through layers
-        for i, (module_def, module) in enumerate(zip(self.module_defs[:cutoff], self.module_list[:cutoff])):
-            if module_def["type"] == "convolutional":
-                conv_layer = module[0]
-                # If batch norm, load bn first
-                if module_def["batch_normalize"]:
-                    bn_layer = module[1]
-                    bn_layer.bias.data.cpu().numpy().tofile(fp)
-                    bn_layer.weight.data.cpu().numpy().tofile(fp)
-                    bn_layer.running_mean.data.cpu().numpy().tofile(fp)
-                    bn_layer.running_var.data.cpu().numpy().tofile(fp)
-                # Load conv bias
-                else:
-                    conv_layer.bias.data.cpu().numpy().tofile(fp)
-                # Load conv weights
-                conv_layer.weight.data.cpu().numpy().tofile(fp)
+    #     # Iterate through layers
+    #     for i, (module_def, module) in enumerate(zip(self.module_defs[:cutoff], self.module_list[:cutoff])):
+    #         if module_def["type"] == "convolutional":
+    #             conv_layer = module[0]
+    #             # If batch norm, load bn first
+    #             if module_def["batch_normalize"]:
+    #                 bn_layer = module[1]
+    #                 bn_layer.bias.data.cpu().numpy().tofile(fp)
+    #                 bn_layer.weight.data.cpu().numpy().tofile(fp)
+    #                 bn_layer.running_mean.data.cpu().numpy().tofile(fp)
+    #                 bn_layer.running_var.data.cpu().numpy().tofile(fp)
+    #             # Load conv bias
+    #             else:
+    #                 conv_layer.bias.data.cpu().numpy().tofile(fp)
+    #             # Load conv weights
+    #             conv_layer.weight.data.cpu().numpy().tofile(fp)
             
-            elif module_def["type"] == "quant_convolutional":
-                conv_layer = module[0]
-                # If batch norm, load bn first
-                if module_def["quant_batch_normalize"]:
-                    bn_layer = module[1]
-                    bn_layer.bias.data.cpu().numpy().tofile(fp)
-                    bn_layer.weight.data.cpu().numpy().tofile(fp)
-                    bn_layer.running_mean.data.cpu().numpy().tofile(fp)
-                    bn_layer.running_var.data.cpu().numpy().tofile(fp)
-                # Load conv bias
-                else:
-                    conv_layer.bias.data.cpu().numpy().tofile(fp)
-                # Load conv weights
-                conv_layer.weight.data.cpu().numpy().tofile(fp)
+    #         elif module_def["type"] == "quant_convolutional":
+    #             conv_layer = module[0]
+    #             # If batch norm, load bn first
+    #             if module_def["quant_batch_normalize"]:
+    #                 bn_layer = module[1]
+    #                 bn_layer.bias.data.cpu().numpy().tofile(fp)
+    #                 bn_layer.weight.data.cpu().numpy().tofile(fp)
+    #                 bn_layer.running_mean.data.cpu().numpy().tofile(fp)
+    #                 bn_layer.running_var.data.cpu().numpy().tofile(fp)
+    #             # Load conv bias
+    #             else:
+    #                 conv_layer.bias.data.cpu().numpy().tofile(fp)
+    #             # Load conv weights
+    #             conv_layer.weight.data.cpu().numpy().tofile(fp)
 
-        fp.close()
+    #     fp.close()
 
-    def save_weights(self, path, cutoff=-1):
-        # Adjust your input shape as needed for your model
-        input_shape = (1, 4, self.img_size, self.img_size)  # Example input shape with 4 channels
+    # def save_weights(self, path, cutoff=-1):
+    #     # Adjust your input shape as needed for your model
+    #     input_shape = (1, 4, self.img_size, self.img_size)  # Example input shape with 4 channels
 
-        self.eval()
-        self.cpu()
-        # Export the model to an ONNX file
-        start = time.time()
-        export_onnx_qcdq(
-            self,
-            args = torch.rand(input_shape),
-            use_external_data_format=True,
-            #input_shape=input_shape,
-            export_path=path,
-            opset_version=13
-        )
-        end = time.time()
-        print(f"Export time : {end-start}")
-        if torch.cuda.is_available():
-            self.cuda()
-        self.train()
-        print(f"Quantized weights successfully saved to {path}")
+    #     self.eval()
+    #     self.cpu()
+    #     # Export the model to an ONNX file
+    #     start = time.time()
+    #     export_onnx_qcdq(
+    #         self,
+    #         args = torch.rand(input_shape),
+    #         use_external_data_format=True,
+    #         export_path=path,
+    #         opset_version=13
+    #     )
+    #     end = time.time()
+    #     print(f"Export time : {end-start}")
+    #     if torch.cuda.is_available():
+    #         self.cuda()
+    #     self.train()
+    #     print(f"Quantized weights successfully saved to {path}")
 
 
 class ModelEMA:
@@ -582,7 +508,4 @@ class ModelEMA:
                     v = v.to(self.device)
                     v *= d
                     v += (1. - d) * msd[k].detach()
-    
-    # def update_attr(self, model, include=(), exclude=('process_group','reducer')):
-    #     copy_attr(self.ema, model, include, exclude)
 

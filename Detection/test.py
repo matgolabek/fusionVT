@@ -34,7 +34,6 @@ def test(use_train_model = None, use_loader = None, use_parser = True, suppress_
         parser.add_argument("--model_config_path", type=str, default="config/yolov3.cfg", help="path to model config file")
         parser.add_argument("--data_config_path", type=str, default="config/pst900.data", help="path to data config file")
         parser.add_argument("--weights_path", type=str, default="checkpoints/float_133.weightd", help="path to weights file")
-        #parser.add_argument("--weights_path", type=str, default="checkpoints/8.onnx", help="path to weights file")
         parser.add_argument("--class_path", type=str, default="data/pst900.names", help="path to class label file")
         parser.add_argument("--iou_thres", type=float, default=0.5, help="iou threshold required to qualify as detected")
         parser.add_argument("--conf_thres", type=float, default=0.8, help="object confidence threshold")
@@ -82,23 +81,6 @@ def test(use_train_model = None, use_loader = None, use_parser = True, suppress_
             if first_line[0]=='#quantization' and first_line[1]=='1':  
                 using_quantized_layers = True
 
-        if using_quantized_layers:
-            pass
-            # model.module_list[0][0]   = QuantConv2d(in_channels=4,out_channels=32,kernel_size=(3,3),stride=(1, 1),padding=(1,1),
-            #                                         bias=False)
-            # model.module_list[81][0]  = QuantConv2d(in_channels=1024,out_channels=27,kernel_size=(1,1),stride=(1, 1)
-            #                                         )
-            # model.module_list[93][0]  = QuantConv2d(in_channels=512,out_channels=27,kernel_size=(1,1),stride=(1, 1)
-            #                                         )
-            # model.module_list[105][0] = QuantConv2d(in_channels=256,out_channels=27,kernel_size=(1,1),stride=(1, 1)
-                                                    # )
-        else:
-            pass
-            # model.module_list[0][0]   = nn.Conv2d(4, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-            # model.module_list[81][0]  = nn.Conv2d(1024, 27, kernel_size=(1, 1), stride=(1, 1))
-            # model.module_list[93][0]  = nn.Conv2d(512, 27, kernel_size=(1, 1), stride=(1, 1))
-            # model.module_list[105][0] = nn.Conv2d(256, 27, kernel_size=(1, 1), stride=(1, 1))
-
         model.load_weights_dict(opt.weights_path)
 
     else:
@@ -123,37 +105,9 @@ def test(use_train_model = None, use_loader = None, use_parser = True, suppress_
     all_detections = []
     all_annotations = []
 
-    a = model.module_list
-    for batch_i, (_, imgs, targets) in enumerate(tqdm.tqdm(dataloader, desc="Detecting objects")):
+    for _, (_, imgs, targets) in enumerate(tqdm.tqdm(dataloader, desc="Detecting objects")):
         imgs = Variable(imgs.type(Tensor))
         targets = Variable(targets.type(Tensor), requires_grad=False)
-
-
-        # img = imgs[0].cpu().numpy()
-        # img = img[:3] * 255
-        # img = np.transpose(img, (1, 2, 0)).astype(np.uint8)
-
-        # target = targets[0].cpu().numpy()
-
-        # print(type(img), img.shape, img.dtype)
-        # for t in target:
-        #     cls, x, y, w, h = t
-
-        #     if x != 0 and y != 0 and w != 0 and h != 0:
-        #         cx = int(x * 416)
-        #         cy = int(y * 416)
-        #         w = int(w * 416)
-        #         h = int(h * 416)
-
-        #         x = cx - w // 2
-        #         y = cy - h // 2
-
-        #         img = np.ascontiguousarray(img)
-
-        #         img = cv.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 1)
-        #         cv.imshow("img", img)
-        #         cv.waitKey(0)
-
 
         with torch.no_grad():
             outputs = model(imgs)

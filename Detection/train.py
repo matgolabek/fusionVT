@@ -34,10 +34,8 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--epochs", type=int, default=200, help="number of epochs")
 parser.add_argument("--image_folder", type=str, default="data/PST900_RGBT_Dataset", help="path to dataset")
 parser.add_argument("--batch_size", type=int, default=4, help="size of each image batch")
-# parser.add_argument("--model_config_path", type=str, default="config/yolov3_quant.cfg", help="path to model config file")
 parser.add_argument("--model_config_path", type=str, default="config/yolov3.cfg", help="path to model config file")
 parser.add_argument("--data_config_path", type=str, default="config/pst900.data", help="path to data config file")
-# parser.add_argument("--weights_path", type=str, default="weights/199.weightd", help="path to weights file")
 parser.add_argument("--weights_path", type=str, default="weights/float_0e.weightd", help="path to weights file")
 parser.add_argument("--class_path", type=str, default="data/pst900.names", help="path to class label file")
 parser.add_argument("--conf_thres", type=float, default=0.8, help="object confidence threshold")
@@ -95,7 +93,6 @@ burn_in = int(hyperparams["burn_in"])
 
 # Initiate model
 model = Darknet(opt.model_config_path)
-#model.apply(weights_init_normal)
 
 file = open(opt.model_config_path,'r')
 first_line = file.readline().rstrip().lstrip().split('=')
@@ -108,10 +105,9 @@ if len(first_line)>1:
 
 if not opt.modw: model.load_weights_pytorch(opt.weights_path)
 
-# if using_quantized_layers:
+# if using_quantized_layers: Used once to convert the coco default weights to PST900 weights
 #     pass
-#     # model.module_list[0][0]   = QuantConv2d(in_channels=4,out_channels=32,kernel_size=(3,3),stride=(1, 1),padding=(1,1),
-#     #                                         bias=False,)
+#     # model.module_list[0][0]   = QuantConv2d(in_channels=4,out_channels=32,kernel_size=(3,3),stride=(1, 1),padding=(1,1), bias=False,)
 #     # model.module_list[81][0]  = QuantConv2d(in_channels=1024,out_channels=27,kernel_size=(1,1),stride=(1, 1))
 #     # model.module_list[93][0]  = QuantConv2d(in_channels=512,out_channels=27,kernel_size=(1,1),stride=(1, 1))
 #     # model.module_list[105][0] = QuantConv2d(in_channels=256,out_channels=27,kernel_size=(1,1),stride=(1, 1))
@@ -128,12 +124,12 @@ if opt.modw: model.load_weights_dict(opt.weights_path)
  
 #if freeze param is True
 #Only train on specified layers
-if opt.freeze:
-    to_train = [0, 81, 93, 105]
-    for k, v in model.named_parameters():
-        v.requires_grad = False
-        if int(k.split('.')[1]) in to_train:
-            v.requires_grad = True
+# if opt.freeze:  Also sed once to teach only new weights
+#     to_train = [0, 81, 93, 105]
+#     for k, v in model.named_parameters():
+#         v.requires_grad = False
+#         if int(k.split('.')[1]) in to_train:
+#             v.requires_grad = True
 
 if cuda:
     model = model.cuda()
@@ -142,7 +138,7 @@ model.train()
 
 # Get dataloader
 dataloader = torch.utils.data.DataLoader(
-    # RGBTFolderX(train_path), batch_size=opt.batch_size, shuffle=False, num_workers=opt.n_cpu
+    # RGBTFolderX(train_path), batch_size=opt.batch_size, shuffle=False, num_workers=opt.n_cpu # Old dataloader, without the data augmentation
     RGBTFolderP(train_path, train=True), batch_size=opt.batch_size, shuffle=False, num_workers=opt.n_cpu)
 
 test_dataloader = torch.utils.data.DataLoader(RGBTFolderP(test_path), batch_size=opt.batch_size, shuffle=False, num_workers=opt.n_cpu)

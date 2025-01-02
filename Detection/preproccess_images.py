@@ -64,7 +64,6 @@ def main():
         for ii, (RGB_T, RGB, LABEL) in enumerate(zip(tqdm(thermalfiles), rgbfiles, labelfiles)):
             imgrgb = np.array(Image.open(RGB))
             imgthermal = np.array(Image.open(RGB_T))
-            #this ->
             imgthermal = fill_thermal(imgthermal)
             imgthermal = np.expand_dims(imgthermal, axis=-1)
             imglabel = np.array(Image.open(LABEL))

@@ -36,7 +36,7 @@ filee.close()
 
 things_to_log = 9
 
-#np.ndarray to store values
+# np.ndarray to store values
 database = np.zeros(shape=(max_epochs,max_batch,things_to_log))
 
 mAPDatabase = np.zeros(shape=(max_epochs, 5))
@@ -70,11 +70,6 @@ cls_mean = np.mean(database[:epo_max,:,5],axis=1)
 total_mean = np.mean(database[:epo_max,:,6],axis=1)
 recall_mean = np.mean(database[:epo_max,:,7],axis=1)
 prec_mean = np.mean(database[:epo_max,:,8],axis=1)
-# class0_ap_mean = np.mean(database[:epo_max,:,9],axis=1)
-# class1_ap_mean = np.mean(database[:epo_max,:,10],axis=1)
-# class2_ap_mean = np.mean(database[:epo_max,:,11],axis=1)
-# class3_ap_mean = np.mean(database[:epo_max,:,12],axis=1)
-# map_mean = np.mean(database[:epo_max,:,13],axis=1)
 
 
 # Plot total loss over batches
@@ -126,41 +121,3 @@ plt.title("mAP")
 plt.legend()
 plt.grid(True)
 plt.show()
-
-
-# # Plot total loss over batches
-# plt.figure(figsize=(10, 6))
-# plt.step(batches, total_losses, label='Total Loss', color='blue')
-# plt.xlabel("Batch")
-# plt.ylabel("Total Loss")
-# plt.title("Total Loss per Batch")
-# plt.legend()
-# plt.grid(True)
-# plt.show()
-
-# # Plot individual loss components over batches
-# plt.figure(figsize=(10, 6))
-# plt.step(batches, x_losses, label='x loss', color='red')
-# plt.step(batches, y_losses, label='y loss', color='green')
-# plt.step(batches, w_losses, label='w loss', color='purple')
-# plt.step(batches, h_losses, label='h loss', color='orange')
-# plt.step(batches, conf_losses, label='Confidence loss', color='brown')
-# plt.step(batches, cls_losses, label='Class loss', color='pink')
-# plt.xlabel("Batch")
-# plt.ylabel("Loss")
-# plt.title("Loss Components per Batch")
-# plt.legend()
-# plt.grid(True)
-# plt.show()
-
-# # Plot recall and precision over batches
-# plt.figure(figsize=(10, 6))
-# plt.step(batches, recalls, label='Recall', color='cyan')
-# plt.step(batches, precisions, label='Precision', color='magenta')
-# plt.xlabel("Batch")
-# plt.ylabel("Value")
-# plt.title("Recall and Precision per Batch")
-# plt.legend()
-# plt.grid(True)
-# plt.show()
-
