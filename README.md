@@ -26,7 +26,8 @@ In the last folder *VAI Implementation* there are jupyter notebooks for Vitis AI
 For development of these programs provided below repositories have been copied and modified.
  - https://github.com/ermuur/PyTorch-YOLOv3 used in *Detection*
  - https://github.com/RunqiuBao/fov_alignment/blob/main/fov_align.ipynb used in *Calibration/ImageRegistration*
- - https://github.com/groupgets/LeptonModule/tree/master used in *Calibration/c++ app on Jetson*
+ - https://github.com/realizator/stereopi-fisheye-robot used in *Calibration/ImageRegistration*
+ - https://github.com/groupgets/LeptonModule/tree/master used in *Calibration/C++ app on Jetson*
  - https://github.com/abewley/sort/tree/master used in *Tracking*
 
  ## Note
