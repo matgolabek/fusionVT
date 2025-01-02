@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9bab79a0-e625-49ce-99df-883acd6686c0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../docs/lepton_interface_design_document.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hardware/LeptonBreakout/LeptonAdaptor.step" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hardware/LeptonBreakout/LeptonAdaptorSch.PDF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hardware/LeptonMicroBreakout/PT Micro Breakout Board Dimensional Drawing.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hardware/LeptonMicroBreakout/PT-Micro.kicad_mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hardware/LeptonMicroBreakout/PT_micro_bob.kicad_sym" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hardware/LeptonMicroBreakout/PureThermal Micro Breakout Board Datasheet Rev2 May 2023.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hardware/LeptonMicroBreakout/PureThermal_Micro_BoB.step" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/STM32F3Discovery_ChibiOS/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/STM32F3Discovery_ChibiOS/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/STM32F3Discovery_ChibiOS/chconf.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/STM32F3Discovery_ChibiOS/flir_dump.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/STM32F3Discovery_ChibiOS/halconf.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/STM32F3Discovery_ChibiOS/main.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/STM32F3Discovery_ChibiOS/make_all.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/STM32F3Discovery_ChibiOS/make_changes.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/STM32F3Discovery_ChibiOS/mcuconf.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/STM32F3Discovery_ChibiOS/usbcfg.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/STM32F3Discovery_ChibiOS/usbcfg.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/ThermalView/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/ThermalView/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/ThermalView/include/callbacks.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/ThermalView/include/guicon.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/ThermalView/obj/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/ThermalView/res/Application.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/ThermalView/res/Application.manifest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/ThermalView/res/main_dialog.rc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/ThermalView/res/resource.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/ThermalView/src/guicon.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/ThermalView/src/serial_win32.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/ThermalView/src/serial_win32.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/ThermalView/src/winmain.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/arduino_i2c/Lepton.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/LeptonThread.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/LeptonThread.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/Lepton_I2C.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/Lepton_I2C.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/MyLabel.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/MyLabel.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/Palettes.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/Palettes.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/SPI.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/SPI.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/bbb.pro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_AGC.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_AGC.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_ErrorCodes.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_I2C_Protocol.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_I2C_Protocol.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_I2C_Reg.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_I2C_Service.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_I2C_Service.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_Macros.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_SDK.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_SDK.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_SDKConfig.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_SYS.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_SYS.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_Types.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_VID.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_VID.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/bbb_I2C.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/bbb_I2C.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/crc16.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/crc16fast.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/main.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/edison_capture/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/edison_capture/lepton_capture.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/flirpi/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/flirpi/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/flirpi/fblept.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/flirpi/greyenhance.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/flirpi/leptbmp.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/flirpi/leptcam.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/flirpi/leptgraypng.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/flirpi/leptsci.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/flirpi/leptsci.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/flirpi/picamoverlay.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_capture/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_capture/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_capture/raspberrypi_capture.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_AGC.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_AGC.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_ErrorCodes.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_I2C_Protocol.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_I2C_Protocol.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_I2C_Reg.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_I2C_Service.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_I2C_Service.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_Macros.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_OEM.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_OEM.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_SDK.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_SDK.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_SDKConfig.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_SYS.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_SYS.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_Types.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_VID.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_VID.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/crc16.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/crc16fast.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/raspi_I2C.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/raspi_I2C.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_qt/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_qt/LeptonThread.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_qt/LeptonThread.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_qt/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_qt/main.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_qt/mainwindow.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_qt/mainwindow.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_qt/raspberrypi_qt.pro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_video/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_video/RgbtThread.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_video/RgbtThread.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_video/calibStereo.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_video/main.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_video/raspberrypi_video.pro" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2nmvCvYpIPEqbyrqIbdIgddU3ez" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/matig/Documents/Studia/Praca inżynierska/ImageRegistraiton&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\matig\Documents\Studia\Praca inżynierska\ImageRegistraiton" />
+      <recent name="C:\Users\matig\Documents\Studia\Praca inżynierska\ImageRegistraiton\thermal" />
+      <recent name="C:\Users\matig\Documents\Studia\Praca inżynierska\ImageRegistraiton\visible" />
+      <recent name="C:\Users\matig\Documents\Studia\Praca inżynierska\ImageRegistraiton\output" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\matig\Documents\Studia\Praca inżynierska\ImageRegistraiton\thermal" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="ImageRegistraiton" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9bab79a0-e625-49ce-99df-883acd6686c0" name="Changes" comment="" />
+      <created>1729590941721</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1729590941721</updated>
+      <workItem from="1729590942922" duration="2743000" />
+      <workItem from="1730396301584" duration="2695000" />
+      <workItem from="1730653833656" duration="2663000" />
+      <workItem from="1730748565935" duration="4050000" />
+      <workItem from="1730821817291" duration="720000" />
+      <workItem from="1730828331785" duration="5578000" />
+      <workItem from="1730837236371" duration="645000" />
+      <workItem from="1730909085689" duration="10507000" />
+      <workItem from="1731160637119" duration="9573000" />
+      <workItem from="1731243417160" duration="653000" />
+      <workItem from="1731251891499" duration="627000" />
+      <workItem from="1731421457172" duration="1149000" />
+      <workItem from="1731424986942" duration="2721000" />
+      <workItem from="1731432138390" duration="2280000" />
+      <workItem from="1731503288273" duration="1069000" />
+      <workItem from="1731504507348" duration="1319000" />
+      <workItem from="1731519952138" duration="1188000" />
+      <workItem from="1731522609344" duration="3268000" />
+      <workItem from="1735836064439" duration="457000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="imgpointsLeft" language="Python" />
+        <watch expression="imgpointsRight" language="Python" />
+        <watch expression="objpoints" language="Python" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ImageRegistraiton$main.coverage" NAME="main Coverage Results" MODIFIED="1731421485656" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ImageRegistraiton$dispStereo.coverage" NAME="dispStereo Coverage Results" MODIFIED="1731526926097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ImageRegistraiton$stereo_calibraiton.coverage" NAME="stereo_calibraiton Coverage Results" MODIFIED="1731526230634" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
