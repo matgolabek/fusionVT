@@ -1,0 +1,6 @@
+classes=4
+train=data/PST900_RGBT_Dataset/train
+valid=data/PST900_RGBT_Dataset/test
+names=data/pst900.names
+backup=backup/
+eval=PST900_RGBT_Dataset

@@ -1,0 +1,22 @@
+To run the app:
+1. Open docker
+    sudo bash ./docker_run.sh xilinx/vitis-ai:latest
+2. Select environment
+    conda activate vitis-ai-pytorch
+3. import nndct (IMPORTANT!)
+    python -c "import pytorch_nndct"
+4. Run Jupyter server
+    jupyter notebook
+5. Open browser clinking the link
+6. For the first run uncomment !pip commands
+
+
+Useful links:
+Abou DPU fingerprint - https://adaptivesupport.amd.com/s/question/0D54U00006wDmkzSAC/info-post-about-dpu-fingerprint?language=en_US
+Fingerprint genertion by user - https://github.com/Xilinx/Vitis-AI/tree/1.4/dsa/DPU-TRD/prj/Vivado
+Quantizing only part of the net - https://github.com/Xilinx/Vitis-AI/issues/1175
+VAI docs - https://github.com/Xilinx/Vitis-AI/blob/master/src/vai_quantizer/vai_q_pytorch/README.md
+
+
+Fingerprint genertion by user - https://github.com/Xilinx/DPU-PYNQ/tree/master
+https://github.com/Xilinx/DPU-PYNQ/blob/master/host/README.md
