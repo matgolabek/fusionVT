@@ -1,29 +1,16 @@
 from memory_profiler import profile
 from concurrent.futures import ThreadPoolExecutor
 import glob
-import concurrent.futures
-import multiprocessing
-import random
 import os
 import numpy as np
 import cv2 as cv
 from tqdm import tqdm
 import torch
 
-#from torchvision.transforms import v2
-
 from torch.utils.data import Dataset
 from PIL import Image
-import torchvision.transforms as transforms
-
-import matplotlib.pyplot as plt
-import matplotlib.patches as patches
 
 from skimage.transform import resize
-
-import sys
-
-import time
 
 class RGBTFolders(Dataset):
     def __init__(self, folder_path, img_size=416):
@@ -40,7 +27,6 @@ class RGBTFolders(Dataset):
         # Extract image
         imgrgb = np.array(Image.open(imgrgb_path))
         imgthermal = np.array(Image.open(imgthermal_path))
-        #this->fill gaps in thermal image
         imgthermal = self.fill_thermal(imgthermal)
         
         imgthermal = np.expand_dims(imgthermal, axis=-1)
@@ -56,11 +42,9 @@ class RGBTFolders(Dataset):
         input_imgrgb = np.pad(imgrgb, pad, 'constant', constant_values=127.5) / 255.
         input_imgthermal = np.pad(imgthermal, pad, 'constant', constant_values=127.5) / 255.
         padded_h, padded_w, _ = input_imgrgb.shape
-        # input_imglabel = np.pad(imglabel, pad, 'constant', constant_values=127.5) / 255.
         # Resize and normalize
         input_imgrgb = resize(input_imgrgb, (*self.img_shape, 3), mode='reflect')
         input_imgthermal = resize(input_imgthermal, (*self.img_shape, 1), mode='reflect')
-        # input_imglabel = resize(input_imglabel, (*self.img_shape, 1), mode='reflect')
         # Concatenate  images
         input_img = np.concatenate((input_imgrgb, input_imgthermal), axis=-1)
         # Channels-first
@@ -90,8 +74,6 @@ class RGBTFolders(Dataset):
             for j, pix in enumerate(unique_pixels):
                 if pix == 0 or pix == 255:
                     continue
-                # if pix not in {2, 3, 4}:
-                #     print("here")
                 if counts[j] > max:
                     max = counts[j]
                     j_max = j
@@ -162,11 +144,6 @@ class ListDataset(Dataset):
         self.max_objects = 50
 
     def __getitem__(self, index):
-
-        #---------
-        #  Image
-        #---------
-
         img_path = self.img_files[index % len(self.img_files)].rstrip()
         img = np.array(Image.open(img_path))
 
@@ -191,10 +168,6 @@ class ListDataset(Dataset):
         input_img = np.transpose(input_img, (2, 0, 1))
         # As pytorch tensor
         input_img = torch.from_numpy(input_img).float()
-
-        #---------
-        #  Label
-        #---------
 
         label_path = self.label_files[index % len(self.img_files)].rstrip()
 
@@ -226,158 +199,6 @@ class ListDataset(Dataset):
 
     def __len__(self):
         return len(self.img_files)
-
-
-class RGBTFolderz(Dataset):
-
-    def __init__(self, folder_path, img_size=416, train=False):
-        # start_time = time.time()
-        self.thermalfiles = sorted(glob.glob('%s/thermal/*.*' % folder_path))
-        self.rgbfiles = sorted(glob.glob('%s/rgb/*.*' % folder_path))
-        self.labelfiles = sorted(glob.glob('%s/labels/*.*' % folder_path))
-        self.img_shape = (img_size, img_size)
-        self.max_objects = 10
-        self.label = np.zeros((len(self.thermalfiles),self.max_objects,5))
-        self.input_imgs = np.zeros(shape=(len(self.thermalfiles),4,img_size,img_size))
-        self.train = train
-        
-        mark_for_deletion = []
-        for ii, (RGB_T, RGB, LABEL) in enumerate(zip(tqdm(self.thermalfiles),self.rgbfiles,self.labelfiles)):
-            imgrgb = Image.open(RGB)
-            imgthermal = Image.open(RGB_T)
-            imglabel = Image.open(LABEL)
-
-            if self.train:
-                totensor = v2.ToTensor()
-                # before_augmentation = time.time()
-                # torch.manual_seed(ii) # transformation different each loop, but identical within one
-                imgconcat = torch.concatenate((totensor(imgrgb), totensor(imgthermal), totensor(imglabel)), 0)
-                transforms = v2.Compose([
-                    v2.RandomResizedCrop(size=(720, 1280), antialias=True),
-                    v2.RandomHorizontalFlip(p=0.5),
-                    v2.RandomRotation(degrees=(-30, 30)),
-                ])
-                imgconcat = transforms(imgconcat)
-                # imgrgb = np.array(transforms(imgrgb))
-                # imgthermal = np.array(transforms(imgthermal))
-                # # imgthermal = np.array(imgthermal)
-                # imglabel = np.array(transforms(imglabel))
-                topilimage = v2.ToPILImage()
-                imgrgb = np.array(topilimage(imgconcat[0:3,:,:]))
-                imgthermal = np.array(topilimage(imgconcat[3,:,:]))
-                imglabel = np.array(topilimage(imgconcat[4,:,:]))
-                # after_augmentation = time.time()
-                # print("Augmentation time: ", after_augmentation - before_augmentation)
-            else:
-                imgrgb = np.array(imgrgb)
-                imgthermal = np.array(imgthermal)
-                imglabel = np.array(imglabel)
-            imgthermal = self.fill_thermal(imgthermal)
-            imgthermal = np.expand_dims(imgthermal, axis=-1)
-            imglabel = np.expand_dims(imglabel, axis=-1)
-
-            # cv.imshow("rgb", imgrgb)
-            # cv.waitKey(0)
-            # cv.imshow("thermal", imgthermal)
-            # cv.waitKey(0)
-            # cv.imshow("label", imglabel * 60)
-            # cv.waitKey(0)
-
-            h, w, _ = imgrgb.shape # same shapes of images rgb, label and thermal
-            dim_diff = np.abs(h - w)
-            # Upper (left) and lower (right) padding
-            pad1, pad2 = dim_diff // 2, dim_diff - dim_diff // 2
-            # Determine padding
-            pad = ((pad1, pad2), (0, 0), (0, 0)) if h <= w else ((0, 0), (pad1, pad2), (0, 0))
-            
-            # new_image_shape = (w,w,3) if h <= w else (h,h,3)
-            # input_imgrgb = np.full(shape=new_image_shape,fill_value=0.5,dtype='float32')
-            # input_imgrgb[280:1000,:,:] = imgrgb.astype("float32") / 255
-            # input_imgthermal = np.full(shape=new_image_shape,fill_value=0.5,dtype='float32')
-            # input_imgthermal[280:1000,:,:] = imgthermal.astype("float32") / 255
-
-            # Add padding
-            input_imgrgb = np.pad(imgrgb, pad, 'constant', constant_values=127.5) / 255.
-            input_imgthermal = np.pad(imgthermal, pad, 'constant', constant_values=127.5) / 255.
-            padded_h, padded_w, _ = input_imgrgb.shape
-            # input_imglabel = np.pad(imglabel, pad, 'constant', constant_values=127.5) / 255.
-            # Resize and normalize
-            input_imgrgb = resize(input_imgrgb, (*self.img_shape, 3), mode='reflect')
-            input_imgthermal = resize(input_imgthermal, (*self.img_shape, 1), mode='reflect')
-            # input_imglabel = resize(input_imglabel, (*self.img_shape, 1), mode='reflect')
-            # Concatenate  images
-            input_img = np.concatenate((input_imgrgb, input_imgthermal), axis=-1)
-            # Channels-first
-            input_img = np.transpose(input_img, (2, 0, 1))
-
-            self.input_imgs[ii] = input_img
-
-            # Find contours in the segmentation image
-            contours, _ = cv.findContours(imglabel, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
-            # Iterate through the contours to get bounding boxes
-            labels = np.zeros((self.max_objects, 5))
-            # labels[:, 0] = 255 # setting undetected bbox as [255, 0, 0, 0, 0]
-            num_of_deleted = 0
-            for i, contour in enumerate(contours):
-                x, y, w, h = cv.boundingRect(contour)
-                if w < 20 and h < 10:
-                    num_of_deleted += 1
-                    continue # skipping small bboxes, cause the model won't learn it anyway
-                x_center = (x + x + w) / (2 * padded_w)
-                y_center = (y + y + h) / (2 * padded_h)
-                x_center += pad[1][0] / padded_w
-                y_center += pad[0][0] / padded_h
-                bbox_width = w / padded_w
-                bbox_height = h / padded_h
-                unique_pixels, counts = np.unique(imglabel[y:y+h, x:x+w], return_counts=True)
-                max = 0
-                j_max = -1
-                for j, pix in enumerate(unique_pixels):
-                    if pix == 0 or pix == 255:
-                        continue
-                    # if pix not in {2, 3, 4}:
-                    #     print("here")
-                    if counts[j] > max:
-                        max = counts[j]
-                        j_max = j
-                object_class = 256
-                if j_max != -1:
-                    object_class = unique_pixels[j_max]
-                if i < self.max_objects:
-                    labels[i - num_of_deleted, :] = [object_class - 1, x_center, y_center, bbox_width, bbox_height]
-            self.label[ii] = labels
-
-            if len(contours) == num_of_deleted:
-                mark_for_deletion.append(ii)
-        
-        for mark in tqdm(mark_for_deletion[::-1]):
-            del self.thermalfiles[mark]
-            del self.rgbfiles[mark]
-            del self.labelfiles[mark]
-            self.label = np.delete(self.label,mark,axis=0)
-            self.input_imgs = np.delete(self.input_imgs,mark,axis=0)
-
-        # stop_time = time.time()
-        # print("Whole image preproccessing time: ", stop_time - start_time)
-
-    def __getitem__(self, index):
-        # As pytorch tensor
-        input_img = torch.from_numpy(self.input_imgs[index]).float()
-
-        return self.rgbfiles[index % len(self.rgbfiles)], input_img, self.label[index]
-
-    def __len__(self):
-        return len(self.thermalfiles)
-    
-    def fill_thermal(self, thermal_image):
-        hole_mask = (thermal_image == 0).astype(np.uint8)
-        filled_thermal = cv.inpaint(
-            thermal_image, 
-            hole_mask, 
-            10, 
-            cv.INPAINT_TELEA
-        )
-        return filled_thermal
 
 
 class RGBTFolderX(Dataset):
@@ -442,43 +263,13 @@ class RGBTFolderP(Dataset):
         imgthermal = Image.open(self.thermalfiles[ii])
         imglabel = Image.open(self.labelfiles[ii])
 
-        if self.train:
-            pass
-            #totensor = v2.ToTensor()
-#             totensor = v2.Compose([v2.ToImage(), v2.ToDtype(torch.float32, scale=True)])
-#             # before_augmentation = time.time()
-#             # torch.manual_seed(ii) # transformation different each loop, but identical within one
-#             imgconcat = torch.concatenate((totensor(imgrgb), totensor(imgthermal), totensor(imglabel)), 0)
-#             transforms = v2.Compose([
-#                 v2.RandomResizedCrop(size=(720, 1280), antialias=True),
-#                 v2.RandomHorizontalFlip(p=0.5),
-#                 v2.RandomRotation(degrees=(-30, 30)),
-#             ])
-#             imgconcat = transforms(imgconcat)
-#             # imgrgb = np.array(transforms(imgrgb))
-#             # imgthermal = np.array(transforms(imgthermal))
-#             # # imgthermal = np.array(imgthermal)
-#             # imglabel = np.array(transforms(imglabel))
-#             topilimage = v2.ToPILImage()
-#             imgrgb = np.array(topilimage(imgconcat[0:3,:,:]))
-#             imgthermal = np.array(topilimage(imgconcat[3,:,:]))
-#             imglabel = np.array(topilimage(imgconcat[4,:,:]))
-            # after_augmentation = time.time()
-            # print("Augmentation time: ", after_augmentation - before_augmentation)
-        else:
+        if not self.train:
             imgrgb = np.array(imgrgb)
             imgthermal = np.array(imgthermal)
             imglabel = np.array(imglabel)
         imgthermal = self.fill_thermal(imgthermal)
         imgthermal = np.expand_dims(imgthermal, axis=-1)
         imglabel = np.expand_dims(imglabel, axis=-1)
-
-        # cv.imshow("rgb", imgrgb)
-        # cv.waitKey(0)
-        # cv.imshow("thermal", imgthermal)
-        # cv.waitKey(0)
-        # cv.imshow("label", imglabel * 60)
-        # cv.waitKey(0)
 
         h, w, _ = imgrgb.shape # same shapes of images rgb, label and thermal
         dim_diff = np.abs(h - w)
@@ -491,17 +282,13 @@ class RGBTFolderP(Dataset):
         input_imgrgb = np.pad(imgrgb, pad, 'constant', constant_values=127.5) / 255.
         input_imgthermal = np.pad(imgthermal, pad, 'constant', constant_values=127.5) / 255.
         padded_h, padded_w, _ = input_imgrgb.shape
-        # input_imglabel = np.pad(imglabel, pad, 'constant', constant_values=127.5) / 255.
         # Resize and normalize
         input_imgrgb = resize(input_imgrgb, (*self.img_shape, 3), mode='reflect')
         input_imgthermal = resize(input_imgthermal, (*self.img_shape, 1), mode='reflect')
-        # input_imglabel = resize(input_imglabel, (*self.img_shape, 1), mode='reflect')
         # Concatenate  images
         input_img = np.concatenate((input_imgrgb, input_imgthermal), axis=-1)
         # Channels-first
         input_img = np.transpose(input_img, (2, 0, 1))
-
-        #self.input_imgs[ii] = input_img
 
         # Find contours in the segmentation image
         contours, _ = cv.findContours(imglabel, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
@@ -526,8 +313,6 @@ class RGBTFolderP(Dataset):
             for j, pix in enumerate(unique_pixels):
                 if pix == 0 or pix == 255:
                     continue
-                # if pix not in {2, 3, 4}:
-                #     print("here")
                 if counts[j] > max:
                     max = counts[j]
                     j_max = j

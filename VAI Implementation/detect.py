@@ -22,7 +22,6 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from matplotlib.ticker import NullLocator
 
-from brevitas.nn import QuantConv2d
 
 Bool_arg = lambda x: bool(strtobool(x))
 
@@ -33,7 +32,6 @@ if __name__ == '__main__':
     parser.add_argument('--image_folder', type=str, default='data/PST900_RGBT_Dataset_MOD/test', help='path to dataset')
     parser.add_argument('--config_path', type=str, default='config/yolov3_quant.cfg', help='path to model config file')
     parser.add_argument('--weights_path', type=str, default='checkpoints/quant_499.weightd', help='path to weights file')
-    #parser.add_argument("--weights_path", type=str, default="checkpoints/99.onnx", help="path to weights file")
     parser.add_argument('--class_path', type=str, default='data/pst900.names', help='path to class label file')
     parser.add_argument('--conf_thres', type=float, default=0.9, help='object confidence threshold')
     parser.add_argument('--nms_thres', type=float, default=0.5, help='iou thresshold for non-maximum suppression')
@@ -59,18 +57,6 @@ if __name__ == '__main__':
     if len(first_line)>1: 
         if first_line[0]=='#quantization' and first_line[1]=='1':  
             using_quantized_layers = True
-
-    if using_quantized_layers:
-        pass
-        # model.module_list[0][0]   = QuantConv2d(in_channels=4,out_channels=32,kernel_size=(3,3),stride=(1, 1),padding=(1,1),bias=False)
-        # model.module_list[81][0]  = QuantConv2d(in_channels=1024,out_channels=27,kernel_size=(1,1),stride=(1, 1))
-        # model.module_list[93][0]  = QuantConv2d(in_channels=512,out_channels=27,kernel_size=(1,1),stride=(1, 1))
-        # model.module_list[105][0] = QuantConv2d(in_channels=256,out_channels=27,kernel_size=(1,1),stride=(1, 1))
-    else:
-        model.module_list[0][0]   = nn.Conv2d(4, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-        model.module_list[81][0]  = nn.Conv2d(1024, 27, kernel_size=(1, 1), stride=(1, 1))
-        model.module_list[93][0]  = nn.Conv2d(512, 27, kernel_size=(1, 1), stride=(1, 1))
-        model.module_list[105][0] = nn.Conv2d(256, 27, kernel_size=(1, 1), stride=(1, 1))
 
     model.load_weights_dict(opt.weights_path)
 
@@ -99,7 +85,6 @@ if __name__ == '__main__':
         with torch.no_grad():
             detections = model(input_imgs)
             detections = non_max_suppression(detections, 80, opt.conf_thres, opt.nms_thres)
-
 
         # Log progress
         current_time = time.time()
@@ -140,10 +125,6 @@ if __name__ == '__main__':
             n_cls_preds = len(unique_labels)
             bbox_colors = random.sample(colors, n_cls_preds)
             for x1, y1, x2, y2, conf, cls_conf, cls_pred in detections.cpu():
-
-                if int(cls_pred) == 4:
-                    print("hello")
-
                 print ('\t+ Label: %s, Conf: %.5f' % (classes[int(cls_pred)], cls_conf.item()))
 
                 # Rescale coordinates to original dimensions
