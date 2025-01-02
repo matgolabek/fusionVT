@@ -4,130 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9bab79a0-e625-49ce-99df-883acd6686c0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../docs/lepton_interface_design_document.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hardware/LeptonBreakout/LeptonAdaptor.step" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hardware/LeptonBreakout/LeptonAdaptorSch.PDF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hardware/LeptonMicroBreakout/PT Micro Breakout Board Dimensional Drawing.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hardware/LeptonMicroBreakout/PT-Micro.kicad_mod" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hardware/LeptonMicroBreakout/PT_micro_bob.kicad_sym" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hardware/LeptonMicroBreakout/PureThermal Micro Breakout Board Datasheet Rev2 May 2023.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hardware/LeptonMicroBreakout/PureThermal_Micro_BoB.step" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/STM32F3Discovery_ChibiOS/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/STM32F3Discovery_ChibiOS/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/STM32F3Discovery_ChibiOS/chconf.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/STM32F3Discovery_ChibiOS/flir_dump.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/STM32F3Discovery_ChibiOS/halconf.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/STM32F3Discovery_ChibiOS/main.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/STM32F3Discovery_ChibiOS/make_all.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/STM32F3Discovery_ChibiOS/make_changes.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/STM32F3Discovery_ChibiOS/mcuconf.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/STM32F3Discovery_ChibiOS/usbcfg.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/STM32F3Discovery_ChibiOS/usbcfg.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/ThermalView/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/ThermalView/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/ThermalView/include/callbacks.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/ThermalView/include/guicon.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/ThermalView/obj/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/ThermalView/res/Application.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/ThermalView/res/Application.manifest" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/ThermalView/res/main_dialog.rc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/ThermalView/res/resource.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/ThermalView/src/guicon.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/ThermalView/src/serial_win32.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/ThermalView/src/serial_win32.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/ThermalView/src/winmain.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/arduino_i2c/Lepton.ino" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/LeptonThread.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/LeptonThread.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/Lepton_I2C.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/Lepton_I2C.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/MyLabel.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/MyLabel.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/Palettes.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/Palettes.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/SPI.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/SPI.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/bbb.pro" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_AGC.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_AGC.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_ErrorCodes.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_I2C_Protocol.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_I2C_Protocol.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_I2C_Reg.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_I2C_Service.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_I2C_Service.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_Macros.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_SDK.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_SDK.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_SDKConfig.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_SYS.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_SYS.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_Types.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_VID.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/LEPTON_VID.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/bbb_I2C.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/bbb_I2C.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/crc16.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/leptonSDKEmb32PUB/crc16fast.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/beagleboneblack_video/main.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/edison_capture/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/edison_capture/lepton_capture.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/flirpi/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/flirpi/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/flirpi/fblept.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/flirpi/greyenhance.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/flirpi/leptbmp.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/flirpi/leptcam.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/flirpi/leptgraypng.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/flirpi/leptsci.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/flirpi/leptsci.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/flirpi/picamoverlay.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_capture/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_capture/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_capture/raspberrypi_capture.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_AGC.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_AGC.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_ErrorCodes.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_I2C_Protocol.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_I2C_Protocol.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_I2C_Reg.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_I2C_Service.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_I2C_Service.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_Macros.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_OEM.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_OEM.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_SDK.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_SDK.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_SDKConfig.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_SYS.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_SYS.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_Types.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_VID.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/LEPTON_VID.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/crc16.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/crc16fast.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/raspi_I2C.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_libs/leptonSDKEmb32PUB/raspi_I2C.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_qt/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_qt/LeptonThread.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_qt/LeptonThread.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_qt/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_qt/main.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_qt/mainwindow.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_qt/mainwindow.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_qt/raspberrypi_qt.pro" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_video/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_video/RgbtThread.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_video/RgbtThread.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_video/calibStereo.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_video/main.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../software/raspberrypi_video/raspberrypi_video.pro" beforeDir="false" />
-    </list>
+    <list default="true" id="9bab79a0-e625-49ce-99df-883acd6686c0" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -226,6 +103,7 @@
       <workItem from="1731519952138" duration="1188000" />
       <workItem from="1731522609344" duration="3268000" />
       <workItem from="1735836064439" duration="457000" />
+      <workItem from="1735836724800" duration="254000" />
     </task>
     <servers />
   </component>
