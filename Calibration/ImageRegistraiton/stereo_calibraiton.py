@@ -1,5 +1,3 @@
-# modyfikacja kodu https://github.com/realizator/stereopi-fisheye-robot
-
 import os
 import cv2
 import numpy as np
@@ -18,7 +16,7 @@ image_size = (img_width, img_height)
 # inner size of chessboard
 rows = 5
 columns = 6
-square_size = 0.026  # 0.05 meters
+square_size = 0.026  # 0.026 meters
 
 CHECKERBOARD = (rows, columns)
 
@@ -96,40 +94,6 @@ for i in range(1, 64):
         #     withChess = image_right
 
     SayMore = False  # Should we print additional debug info?
-    # skip images where the corners of the chessboard are too close to the edges of the image
-    # if ((retL == True)):
-    #     minRx = cornersR[:, :, 0].min()
-    #     maxRx = cornersR[:, :, 0].max()
-    #     minRy = cornersR[:, :, 1].min()
-    #     maxRy = cornersR[:, :, 1].max()
-    #
-    #     minLx = cornersL[:, :, 0].min()
-    #     maxLx = cornersL[:, :, 0].max()
-    #     minLy = cornersL[:, :, 1].min()
-    #     maxLy = cornersL[:, :, 1].max()
-    #
-    #     border_threshold_x = X / 12
-    #     border_threshold_y = Y / 12
-    #     if (SayMore):
-    #         print("thr_X: ", border_threshold_x, "thr_Y:", border_threshold_y)
-    #     x_thresh_bad = False
-    #     if ((
-    #             minLx < border_threshold_x)):  # or (loadedX-maxRx < border_threshold_x) or (loadedX-maxLx < border_threshold_x)):
-    #         x_thresh_bad = True
-    #     y_thresh_bad = False
-    #     if ((
-    #             minLy < border_threshold_y)):  # or (loadedY-maxRy < border_threshold_y) or (loadedY-maxLy < border_threshold_y)):
-    #         y_thresh_bad = True
-    #     if (y_thresh_bad == True) or (x_thresh_bad == True):
-    #         if (SayMore):
-    #             print("Chessboard too close to the side!", "X thresh: ", x_thresh_bad, "Y thresh: ", y_thresh_bad)
-    #             print(" minLx: ", minLx, "maxLx:", maxLx)
-    #             print(" minLy: ", minLy, "maxLy:", maxLy)
-    #         else:
-    #             print("Chessboard too close to the side! Image ignored")
-    #         retL = False
-    #         # retR = False
-    #         continue
 
     # Refine corners and add to array for processing
     if retL and retR and accepted:
@@ -286,15 +250,15 @@ if visual:
     cv2.waitKey(0)
 
 XX, YY = (img_width, img_height)
-visRectify = np.zeros((YY, XX * 2, 3), np.uint8)  # utworzenie nowego obrazka o szerokosci x2
-visRectify[:, 0:XX, :] = imgL  # przypisanie obrazka lewego
-visRectify[:, XX:XX * 2, :] = imgR  # przypisanie obrazka prawego
+visRectify = np.zeros((YY, XX * 2, 3), np.uint8)  # Create a new image with double width
+visRectify[:, 0:XX, :] = imgL  # Assign the left image
+visRectify[:, XX:XX * 2, :] = imgR  # Assign the right image
 
-# Wyrysowanie poziomych linii
+# Draw horizontal lines
 for y in range(0, YY, 10):
     cv2.line(visRectify, (0, y), (XX * 2, y), (255, 0, 0))
 
-visRectifyV = np.zeros((YY * 2, XX, 3), np.uint8)  # Create a new image with double width
+visRectifyV = np.zeros((YY * 2, XX, 3), np.uint8)  # Create a new image with double height
 visRectifyV[0:YY, :, :] = imgL  # Assign the left image
 visRectifyV[YY:YY * 2, :, :] = imgR  # Assign the right image
 
@@ -305,7 +269,7 @@ for x in range(0, XX, 30):
 visRectifyV = cv2.resize(visRectifyV, (320, 480))
 
 if (visual):
-    cv2.imshow('visRectify', visRectifyV)  # wizualizacja
+    cv2.imshow('visRectify', visRectifyV)  # Visualization
     cv2.waitKey(0)
 
 # FOV pairing
@@ -320,8 +284,6 @@ calibData = {"M": M_list}
 
 with open("M.json", "w") as f:
     json.dump(calibData, f)
-
-# imgR[:, pix_shift:, :] = imgR[:, :-pix_shift, :]
 
 imgR_lin_warp = cv2.warpPerspective(imgR, M, (640, 480))
 cv2.imshow("warp", imgR_lin_warp)
@@ -342,15 +304,15 @@ new_width = x2 - x1
 new_height = y2 - y1
 
 XX, YY = (new_width, new_height)
-visRectify = np.zeros((YY, XX * 2, 3), np.uint8)  # utworzenie nowego obrazka o szerokosci x2
-visRectify[:, 0:XX, :] = imgL  # przypisanie obrazka lewego
-visRectify[:, XX:XX * 2, :] = imgR  # przypisanie obrazka prawego
+visRectify = np.zeros((YY, XX * 2, 3), np.uint8)  # Create a new image with double width
+visRectify[:, 0:XX, :] = imgL  # Assign the left image
+visRectify[:, XX:XX * 2, :] = imgR  # Assign the right image
 
-# Wyrysowanie poziomych linii
+# Draw horizontal lines
 for y in range(0, YY, 10):
     cv2.line(visRectify, (0, y), (XX * 2, y), (255, 0, 0))
 
-visRectifyV = np.zeros((YY * 2, XX, 3), np.uint8)  # Create a new image with double width
+visRectifyV = np.zeros((YY * 2, XX, 3), np.uint8)  # Create a new image with double height
 visRectifyV[0:YY, :, :] = imgL  # Assign the left image
 visRectifyV[YY:YY * 2, :, :] = imgR  # Assign the right image
 
@@ -361,7 +323,7 @@ for x in range(0, XX, 30):
 visRectifyV = cv2.resize(visRectifyV, (320, 480))
 
 if (visual):
-    cv2.imshow('visRectifyH', visRectify)  # wizualizacja
+    cv2.imshow('visRectifyH', visRectify)  # Visualization
     cv2.waitKey(0)
     cv2.imshow('visRectifyV', visRectifyV)
     cv2.waitKey(0)

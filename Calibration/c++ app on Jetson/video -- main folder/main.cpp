@@ -106,7 +106,6 @@ int main(int argc, char **argv) {
     
     QWidget *myWidget = new QWidget;
     myWidget->setWindowTitle("Fusion of Vision and Thermal Imaging");
-    //myWidget->setGeometry(400, 300, 640, 480); // Increased size for both cameras
 
 	QVBoxLayout *mainLayout = new QVBoxLayout();
     QHBoxLayout *layout = new QHBoxLayout();
@@ -114,7 +113,6 @@ int main(int argc, char **argv) {
     
     // Create a label for the thermal image
     MyLabel leptonLabel(myWidget);
-    //leptonLabel.setFixedSize(320, 240);
     leptonLabel.setFixedSize(640, 480);
     layout->addWidget(&leptonLabel);
 
@@ -122,10 +120,6 @@ int main(int argc, char **argv) {
     QLabel *cameraLabel = new QLabel(myWidget);
     cameraLabel->setFixedSize(640, 480);
     layout->addWidget(cameraLabel);
-
-    // Create a button for FFC - still don't know what it is
-    //QPushButton *button1 = new QPushButton("Perform FFC", myWidget);
-    //layout->addWidget(button1);
 
     // Create threads for Lepton and USB camera
     LeptonThread *leptonThread = new LeptonThread();
@@ -147,9 +141,6 @@ int main(int argc, char **argv) {
                      [cameraLabel](const QImage &frame) {
         cameraLabel->setPixmap(QPixmap::fromImage(frame));
     });
-
-    // Connect FFC button to the thread's FFC action
-    //QObject::connect(button1, SIGNAL(clicked()), leptonThread, SLOT(performFFC()));
     
     QLabel *fusedImageLabel = new QLabel(myWidget);
     fusedImageLabel->setFixedSize(640, 480);
@@ -157,12 +148,10 @@ int main(int argc, char **argv) {
 
     // Create the RGBT thread for fusing thermal and RGB images
     RGBTThread *rgbtThread = new RGBTThread(nullptr);
-    //std::cout << "po deklracji klasy" << std::endl;
 
     // Connect the update signals from Lepton and Camera threads to the RGBT thread
     QObject::connect(leptonThread, &LeptonThread::updateImage, rgbtThread, &RGBTThread::setThermalImage);
     QObject::connect(cameraThread, &CameraThread::updateVideoFrame, rgbtThread, &RGBTThread::setCameraImage);
-    //std::cout << "po connect" << std::endl;
 
     
     // Connect the RGBT thread's update signal to the fused image label
@@ -170,20 +159,15 @@ int main(int argc, char **argv) {
                      fusedImageLabel, [fusedImageLabel](const QImage &fusedImage) {
         fusedImageLabel->setPixmap(QPixmap::fromImage(fusedImage));
     });
-    
-    //std::cout << "po connect2" << std::endl;
-    
+
+    // Create a button for taking a photo    
     QPushButton *photoButton = new QPushButton("Take a Photo");
     QObject::connect(photoButton, &QPushButton::clicked, rgbtThread, &RGBTThread::takePhoto);
     buttonsLayout->addWidget(photoButton);
 
     leptonThread->start();
-	//std::cout << "po start lepton" << std::endl;
     cameraThread->start();
-	//std::cout << "po start camera" << std::endl;
     rgbtThread->start();
-	//std::cout << "po start rgbt" << std::endl;
-
     
     mainLayout->addLayout(layout);
     mainLayout->addLayout(buttonsLayout);

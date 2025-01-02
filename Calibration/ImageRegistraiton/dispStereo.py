@@ -39,7 +39,7 @@ P1 = np.zeros([3, 4])
 P2 = np.zeros([3, 4])
 Q = np.zeros([4, 4])
 
-FOV = 0.  # powinno być ~0.6!!
+FOV = 0.6 # Field of view, choose your own value
 
 # Rectify calibration results
 (leftRectification, rightRectification, leftProjection, rightProjection,
@@ -101,15 +101,15 @@ if (visual):
     cv2.waitKey(0)
 
 XX, YY = (new_width, new_height)
-visRectify = np.zeros((YY, XX * 2, 3), np.uint8)  # utworzenie nowego obrazka o szerokosci x2
-visRectify[:, 0:XX, :] = imgL  # przypisanie obrazka lewego
-visRectify[:, XX:XX * 2, :] = imgR  # przypisanie obrazka prawego
+visRectify = np.zeros((YY, XX * 2, 3), np.uint8)  # Create a new image with double width
+visRectify[:, 0:XX, :] = imgL  # Assign the left image
+visRectify[:, XX:XX * 2, :] = imgR  # Assign the right image
 
-# Wyrysowanie poziomych linii
+# Draw horizontal lines
 for y in range(0, YY, 10):
     cv2.line(visRectify, (0, y), (XX * 2, y), (255, 0, 0))
 
-visRectifyV = np.zeros((YY * 2, XX, 3), np.uint8)  # Create a new image with double width
+visRectifyV = np.zeros((YY * 2, XX, 3), np.uint8)  # Create a new image with double height
 visRectifyV[0:YY, :, :] = imgL  # Assign the left image
 visRectifyV[YY:YY * 2, :, :] = imgR  # Assign the right image
 
@@ -125,7 +125,7 @@ mean_image = cv2.resize(mean_image, (640, 480))
 print("M: ", M)
 
 if (visual):
-    cv2.imshow('visRectifyH', visRectify)  # wizualizacja
+    cv2.imshow('visRectifyH', visRectify)  # Visualize the rectified images
     cv2.waitKey(0)
     cv2.imshow('visRectifyV', visRectifyV)
     cv2.waitKey(0)
