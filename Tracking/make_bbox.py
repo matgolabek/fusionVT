@@ -15,7 +15,6 @@ matplotlib.use('TkAgg')
 
 
 def make_bbox(folder_path: str, skip: int = 0, num_of_class: int = 4):
-    # thermalfiles = sorted(glob.glob('%s/thermal/*.*' % folder_path))
     rgb_files = sorted(glob.glob('%s/rgb/*.*' % folder_path))
     label_files = sorted(glob.glob('%s/labels/*.*' % folder_path))
     if skip > 0:
@@ -43,8 +42,6 @@ def make_bbox(folder_path: str, skip: int = 0, num_of_class: int = 4):
         bboxes = []
         for i, contour in enumerate(contours):
             x, y, w, h = cv.boundingRect(contour)
-            # if w < 20 and h < 10:
-            #     continue  # skipping small bboxes, cause the model won't learn it anyway
             # Draw the rectangle on the image
             unique_pixels, counts = np.unique(label_img[y:y + h, x:x + w], return_counts=True)
             max = 0
@@ -52,8 +49,6 @@ def make_bbox(folder_path: str, skip: int = 0, num_of_class: int = 4):
             for j, pix in enumerate(unique_pixels):
                 if pix == 0 or pix == 255:
                     continue
-                # if pix not in {2, 3, 4}:
-                #     print("here")
                 if counts[j] > max:
                     max = counts[j]
                     j_max = j
@@ -72,7 +67,7 @@ def make_bbox(folder_path: str, skip: int = 0, num_of_class: int = 4):
             plt.text(x, y, s=classes[object_class - 1], color='white', verticalalignment='top',
                      bbox={'color': color, 'pad': 0})
 
-            # Save generated image with detections
+        # Save generated image with detections
         plt.axis('off')
         plt.gca().xaxis.set_major_locator(NullLocator())
         plt.gca().yaxis.set_major_locator(NullLocator())

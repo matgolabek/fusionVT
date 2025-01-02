@@ -38,10 +38,3 @@ grid_image = join_images_grid_with_index(image_paths, rows=4, cols=2)
 cv2.imwrite("human_track.jpg", grid_image)
 cv2.imshow("Grid 2x4", grid_image)
 cv2.waitKey(0)
-
-# # Create a 5x2 grid
-# grid_image = join_images_grid_with_index(image_paths, rows=5, cols=2)
-# cv2.imwrite("grid_5x2.jpg", grid_image)
-# cv2.imshow("Grid 5x2", grid_image)
-# cv2.waitKey(0)
-# cv2.destroyAllWindows()

@@ -21,8 +21,6 @@ def track(images_path: str, data_path:str):
     tracker = Sort(max_age=3, min_hits=1, iou_threshold=0.1)
 
     for i, bboxes in enumerate(tqdm(bboxes_per_frame, desc="Tracking")):
-        # if i >= 40:  # new video after 40th frame
-        #     break
         plt.figure()
         fig, ax = plt.subplots(1)
         ax.imshow(rgb_imgs[i])
@@ -31,9 +29,7 @@ def track(images_path: str, data_path:str):
         else:
             bboxes = np.array(bboxes)
         bboxes_with_idx = tracker.update(bboxes)
-        # print("Frame", i)
-        # print(bboxes)
-        # print(bboxes_with_idx)
+        
         for bbox_with_idx in bboxes_with_idx:
             x = bbox_with_idx[0]
             y = bbox_with_idx[1]
